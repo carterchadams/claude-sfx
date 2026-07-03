@@ -40,6 +40,18 @@ SFX_VOLUME=30        # quieter (0–100)
 SFX_OVERLAP_KILL=0   # let clips overlap instead of cutting off
 ```
 
+**Silence one type of sound?** Just delete its clips from the `claude-sfx/sfx/`
+directory. Clips are named `<category>_<label>.mp3`, so to mute, say, the
+every-prompt chatter, nuke the `working_*` files:
+
+```bash
+rm claude-sfx/sfx/working_*.mp3   # no more "Roger." on every prompt
+```
+
+A category with no clips left simply plays nothing. Categories: `session-start`,
+`session-end`, `working`, `run-command`, `edit-file`, `error`, `alert`,
+`compact`, `done`.
+
 Full docs, sound categories, and how to add your own clips live in
 [`claude-sfx/README.md`](claude-sfx/README.md).
 
