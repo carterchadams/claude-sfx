@@ -8,8 +8,9 @@ across macOS and Linux with zero required dependencies.
 
 Claude Code fires **hooks** on lifecycle events. Each hook runs `play.sh
 <category>`, which picks a random clip from `sfx/` whose name starts with
-`SCV_<category>_` and plays it in the background using whatever audio player
-the OS has.
+`<category>_` and plays it in the background using whatever audio player the
+OS has. The bundled clips are StarCraft SCV lines, but any audio works — swap
+in whatever you like.
 
 | Hook event         | Matcher            | Category        | Fires when                                    |
 |--------------------|--------------------|-----------------|-----------------------------------------------|
@@ -31,15 +32,15 @@ clips to silence it.
 
 ## Adding sounds
 
-Drop audio files into `sfx/`, named `SCV_<category>_<transcript>.mp3`:
+Drop audio files into `sfx/`, named `<category>_<label>.<ext>`:
 
 ```
-sfx/  ->  SCV_alert_Ping.mp3  SCV_alert_Ping_Again.mp3  SCV_working_Yep.mp3
+sfx/  ->  alert_Ping.mp3  alert_Ping_Again.mp3  working_Yep.mp3
 ```
 
-Every clip whose name starts with `SCV_<category>_` is **shuffled**
-automatically (uniform random) — no config needed. One clip = that clip every
-time.
+Every clip whose name starts with `<category>_` is **shuffled** automatically
+(uniform random) — no config needed. One clip = that clip every time. The
+`<label>` part is free-form; it just keeps names unique and readable.
 
 - **Use `.wav`** for maximum portability (`afplay`, `paplay`, `aplay` all
   handle it). `.ogg/.mp3/.aiff/.flac` work only where the chosen player
@@ -48,7 +49,7 @@ time.
 
 ## Disabling a category
 
-**Delete its `SCV_<category>_*` clips from `sfx/`.** A category with no clips
+**Delete its `<category>_*` clips from `sfx/`.** A category with no clips
 plays nothing. To disable globally without editing anything, set
 `SFX_DISABLE=1`.
 

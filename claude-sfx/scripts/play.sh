@@ -7,9 +7,9 @@
 #   e.g.    play.sh alert
 #
 # Categories map to filename prefixes: clips live flat in sfx/ named
-# SCV_<category>_<transcript>.mp3, and this shuffles between all clips whose
-# name starts with SCV_<category>_. No matching clips plays nothing — that's
-# how you disable a category.
+# <category>_<label>.<ext>, and this shuffles between all clips whose name
+# starts with <category>_. No matching clips plays nothing — that's how you
+# disable a category. (The bundled clips are SCV lines, but any audio works.)
 #
 # Env toggles:
 #   SFX_OVERLAP_KILL     stop any still-playing clip before starting the new
@@ -31,11 +31,11 @@ ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 dir="$ROOT/sfx"
 [ -d "$dir" ] || exit 0
 
-# Collect clips whose name starts with SCV_<category>_. wav is the safe
+# Collect clips whose name starts with <category>_. wav is the safe
 # cross-platform format; the others play only where the chosen player supports
 # them.
 shopt -s nullglob
-pre="$dir/SCV_${category}_"
+pre="$dir/${category}_"
 clips=("$pre"*.wav "$pre"*.ogg "$pre"*.mp3 "$pre"*.aiff "$pre"*.flac)
 (( ${#clips[@]} == 0 )) && exit 0
 
