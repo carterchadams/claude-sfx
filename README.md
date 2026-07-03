@@ -26,7 +26,7 @@ In Claude Code, add this repo as a marketplace and install the plugin:
 Once it's pushed to GitHub, others can grab it with:
 
 ```
-/plugin marketplace add carteradams/claude-craft
+/plugin marketplace add redcartel/claude-sfx
 /plugin install claude-sfx@claude-craft
 ```
 
