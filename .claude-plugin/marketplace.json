@@ -1,0 +1,16 @@
+{
+  "name": "claude-craft",
+  "description": "Local marketplace for claude-craft plugins.",
+  "owner": {
+    "name": "carteradams",
+    "email": "carteradams@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "claude-sfx",
+      "description": "Plays shuffled StarCraft SCV sound effects as Claude works — startup, progress, alerts, errors, and completion. Cross-platform (macOS/Linux).",
+      "version": "0.2.1",
+      "source": "./claude-sfx"
+    }
+  ]
+}
