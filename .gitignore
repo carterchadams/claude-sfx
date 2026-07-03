@@ -1,5 +1,2 @@
-# Raw sound source assets (clips are copied into claude-sfx/sounds/)
-StarCraft/
-
 # Personal/local Claude Code settings
 .claude/settings.local.json

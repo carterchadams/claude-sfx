@@ -6,9 +6,10 @@
 #   Usage:  play.sh <category>
 #   e.g.    play.sh alert
 #
-# Categories map to folders under sounds/<category>/. Drop one or more audio
-# files in a folder and this shuffles between them. An empty (or missing)
-# folder plays nothing — that's how you disable a category.
+# Categories map to filename prefixes: clips live flat in sfx/ named
+# SCV_<category>_<transcript>.mp3, and this shuffles between all clips whose
+# name starts with SCV_<category>_. No matching clips plays nothing — that's
+# how you disable a category.
 #
 # Env toggles:
 #   SFX_OVERLAP_KILL     stop any still-playing clip before starting the new
@@ -27,13 +28,15 @@ category="${1:-}"
 # Resolve plugin root: prefer the env var Claude Code injects, else derive it
 # from this script's location so play.sh also works when run by hand.
 ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
-dir="$ROOT/sounds/$category"
+dir="$ROOT/sfx"
 [ -d "$dir" ] || exit 0
 
-# Collect clips. wav is the safe cross-platform format; the others play only
-# where the chosen player supports them.
+# Collect clips whose name starts with SCV_<category>_. wav is the safe
+# cross-platform format; the others play only where the chosen player supports
+# them.
 shopt -s nullglob
-clips=("$dir"/*.wav "$dir"/*.ogg "$dir"/*.mp3 "$dir"/*.aiff "$dir"/*.flac)
+pre="$dir/SCV_${category}_"
+clips=("$pre"*.wav "$pre"*.ogg "$pre"*.mp3 "$pre"*.aiff "$pre"*.flac)
 (( ${#clips[@]} == 0 )) && exit 0
 
 # Shuffle: $RANDOM is a bash builtin (present on macOS + Linux), unlike `shuf`

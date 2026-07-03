@@ -7,8 +7,9 @@ across macOS and Linux with zero required dependencies.
 ## How it works
 
 Claude Code fires **hooks** on lifecycle events. Each hook runs `play.sh
-<category>`, which picks a random clip from `sounds/<category>/` and plays it
-in the background using whatever audio player the OS has.
+<category>`, which picks a random clip from `sfx/` whose name starts with
+`SCV_<category>_` and plays it in the background using whatever audio player
+the OS has.
 
 | Hook event         | Matcher            | Category        | Fires when                                    |
 |--------------------|--------------------|-----------------|-----------------------------------------------|
@@ -25,19 +26,20 @@ in the background using whatever audio player the OS has.
 The two noisiest triggers are `working` (every prompt) and `run-command` /
 `edit-file` (every tool action). By default each new clip cuts off the last
 (`SFX_OVERLAP_KILL` is on), so rapid events stay tidy rather than piling into a
-chord. Set `SFX_OVERLAP_KILL=0` to let them overlap, or empty a category's
-folder to silence it.
+chord. Set `SFX_OVERLAP_KILL=0` to let them overlap, or remove a category's
+clips to silence it.
 
 ## Adding sounds
 
-Drop audio files into the matching folder under `sounds/`:
+Drop audio files into `sfx/`, named `SCV_<category>_<transcript>.mp3`:
 
 ```
-sounds/alert/  ->  ping1.wav  ping2.wav  ping3.wav
+sfx/  ->  SCV_alert_Ping.mp3  SCV_alert_Ping_Again.mp3  SCV_working_Yep.mp3
 ```
 
-Multiple files in a folder are **shuffled** automatically (uniform random) —
-no config needed. One file = that file every time.
+Every clip whose name starts with `SCV_<category>_` is **shuffled**
+automatically (uniform random) — no config needed. One clip = that clip every
+time.
 
 - **Use `.wav`** for maximum portability (`afplay`, `paplay`, `aplay` all
   handle it). `.ogg/.mp3/.aiff/.flac` work only where the chosen player
@@ -46,8 +48,9 @@ no config needed. One file = that file every time.
 
 ## Disabling a category
 
-**Empty the folder.** A category with no clips plays nothing. To disable
-globally without editing anything, set `SFX_DISABLE=1`.
+**Delete its `SCV_<category>_*` clips from `sfx/`.** A category with no clips
+plays nothing. To disable globally without editing anything, set
+`SFX_DISABLE=1`.
 
 ## Env toggles
 
