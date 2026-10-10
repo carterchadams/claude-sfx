@@ -1,5 +1,5 @@
 {
-  "description": "claude-sfx — play shuffled SCV sound effects on Claude lifecycle events.",
+  "description": "scv-sounds — play shuffled SCV sound effects on Claude lifecycle events.",
   "hooks": {
     "SessionStart": [
       {

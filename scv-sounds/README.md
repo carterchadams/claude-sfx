@@ -1,8 +1,9 @@
-# claude-sfx
+# scv-sounds
 
 A Claude Code plugin that plays shuffled sound effects as Claude works —
 signalling startup, progress, alerts, errors, and completion. Cross-platform
-across macOS and Linux with zero required dependencies.
+across macOS and Linux; on Linux you need an mp3-capable player (see
+[Players](#players-auto-detected-in-order)).
 
 ## How it works
 
@@ -71,8 +72,11 @@ volume and always plays at 100% — every other player honors the setting.
 ## Players (auto-detected, in order)
 
 `afplay` (macOS, built in) → `paplay` (PulseAudio/PipeWire) → `ffplay` → `mpv`
-→ `play` (sox) → `aplay` (ALSA, wav only). At least one is present on virtually
-every macOS or desktop Linux system.
+→ `play` (sox) → `aplay` (ALSA, wav only).
+
+The bundled clips are `.mp3`, which only `afplay`, `ffplay`, `mpv` and `play`
+can decode — `paplay`/`aplay` are skipped for mp3. macOS always has `afplay`;
+on Linux install ffmpeg, mpv, or sox, or the plugin plays nothing.
 
 ## Error detection
 

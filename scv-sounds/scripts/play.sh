@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# claude-sfx :: play.sh
+# scv-sounds :: play.sh
 # Play a random clip from a category folder, non-blocking, cross-platform.
 #
 #   Usage:  play.sh <category>
