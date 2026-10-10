@@ -24,10 +24,12 @@ in whatever you like.
 | `Notification`     | —                  | `alert`         | Claude needs permission / is waiting on you   |
 | `PreCompact`       | —                  | `compact`       | Before the context window is compacted        |
 | `Stop`             | —                  | `done`          | Claude finishes its turn                       |
+| any tool hook      | (subagent call)    | `subagent`      | A subagent runs a tool — no clips by default  |
 
-Subagents stay silent: hooks also fire for their tool calls, so `play.sh`
-skips any event whose payload carries an `agent_id`. Only the main session
-makes noise.
+**Subagents** have their own category. Hooks also fire for subagents' tool
+calls, so any event whose payload carries an `agent_id` plays `subagent`
+instead of its usual category. No `subagent_*` clips ship by default, so
+subagents are silent until you add some (e.g. `sfx/subagent_Whirr.wav`).
 
 The two noisiest triggers are `working` (every prompt) and `run-command` /
 `edit-file` (every tool action). By default each new clip cuts off the last
