@@ -18,12 +18,12 @@ stale. Swap in your own sounds anytime.
 In Claude Code, add this repo as a marketplace and install the plugin:
 
 ```
-/plugin marketplace add carterchadams/claude-sfx
+/plugin marketplace add carterchadams/scv-sounds
 /plugin install scv-sounds@scv-sounds
 ```
 
 Hacking on a local clone? Point the marketplace at the checkout instead:
-`/plugin marketplace add /path/to/claude-sfx`.
+`/plugin marketplace add /path/to/scv-sounds`.
 
 Restart your session and listen for the **"Ready."** 🫡
 
@@ -36,7 +36,7 @@ install the marketplace and plugin when they trust the folder:
 {
   "extraKnownMarketplaces": {
     "scv-sounds": {
-      "source": { "source": "github", "repo": "carterchadams/claude-sfx" }
+      "source": { "source": "github", "repo": "carterchadams/scv-sounds" }
     }
   },
   "enabledPlugins": {

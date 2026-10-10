@@ -1,7 +1,7 @@
 {
   "extraKnownMarketplaces": {
     "scv-sounds": {
-      "source": { "source": "github", "repo": "carterchadams/claude-sfx" }
+      "source": { "source": "github", "repo": "carterchadams/scv-sounds" }
     }
   },
   "enabledPlugins": {
