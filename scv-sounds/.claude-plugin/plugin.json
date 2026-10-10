@@ -1,5 +1,5 @@
 {
-  "name": "claude-sfx",
+  "name": "scv-sounds",
   "version": "0.2.1",
   "description": "Plays shuffled StarCraft SCV sound effects as Claude works — startup, progress, alerts, errors, and completion. Cross-platform (macOS/Linux).",
   "author": {

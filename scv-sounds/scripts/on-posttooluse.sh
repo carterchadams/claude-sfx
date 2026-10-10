@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# claude-sfx :: on-posttooluse.sh
+# scv-sounds :: on-posttooluse.sh
 # Reads the PostToolUse hook JSON on stdin and plays the "error" category when
 # the tool call appears to have failed.
 #

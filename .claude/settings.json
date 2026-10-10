@@ -1,5 +1,10 @@
 {
+  "extraKnownMarketplaces": {
+    "scv-sounds": {
+      "source": { "source": "github", "repo": "carterchadams/claude-sfx" }
+    }
+  },
   "enabledPlugins": {
-    "claude-sfx@claude-craft": true
+    "scv-sounds@scv-sounds": true
   }
 }
