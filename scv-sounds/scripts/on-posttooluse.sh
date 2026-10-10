@@ -30,5 +30,6 @@ else
   printf '%s' "$input" | grep -qiE '"(is_error|error)"[[:space:]]*:[[:space:]]*(true|")' && is_error=1
 fi
 
-[ "$is_error" = "1" ] && exec "$ROOT/scripts/play.sh" error
+# Hand the payload on so play.sh can skip subagent tool calls.
+[ "$is_error" = "1" ] && printf '%s' "$input" | "$ROOT/scripts/play.sh" error
 exit 0

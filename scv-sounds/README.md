@@ -25,6 +25,10 @@ in whatever you like.
 | `PreCompact`       | —                  | `compact`       | Before the context window is compacted        |
 | `Stop`             | —                  | `done`          | Claude finishes its turn                       |
 
+Subagents stay silent: hooks also fire for their tool calls, so `play.sh`
+skips any event whose payload carries an `agent_id`. Only the main session
+makes noise.
+
 The two noisiest triggers are `working` (every prompt) and `run-command` /
 `edit-file` (every tool action). By default each new clip cuts off the last
 (`SFX_OVERLAP_KILL` is on), so rapid events stay tidy rather than piling into a
