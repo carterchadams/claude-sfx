@@ -25,6 +25,21 @@ set -euo pipefail
 category="${1:-}"
 [ -z "$category" ] && exit 0
 
+# Subagents get their own "subagent" category: hooks fire for their tool calls
+# too, and their payload carries an agent_id that the main session's never
+# does. No subagent_* clips ship by default, so subagents stay silent until you
+# add some. Only read stdin when it's piped (a hook), so running play.sh by
+# hand doesn't block.
+if [ ! -t 0 ]; then
+  input="$(cat)"
+  if command -v jq >/dev/null 2>&1; then
+    agent="$(printf '%s' "$input" | jq -r '.agent_id? // empty' 2>/dev/null || true)"
+    [ -n "$agent" ] && category=subagent
+  else
+    printf '%s' "$input" | grep -qE '"agent_id"[[:space:]]*:[[:space:]]*"' && category=subagent
+  fi
+fi
+
 # Resolve plugin root: prefer the env var Claude Code injects, else derive it
 # from this script's location so play.sh also works when run by hand.
 ROOT="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"

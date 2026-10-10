@@ -70,7 +70,8 @@ rm scv-sounds/sfx/working_*.mp3   # no more "Roger." on every prompt
 
 A category with no clips left simply plays nothing. Categories: `session-start`,
 `session-end`, `working`, `run-command`, `edit-file`, `error`, `alert`,
-`compact`, `done`.
+`compact`, `done`, and `subagent` (subagent tool calls; ships empty, so
+subagents are silent until you add `subagent_*` clips).
 
 Full docs, sound categories, and how to add your own clips live in
 [`scv-sounds/README.md`](scv-sounds/README.md).
